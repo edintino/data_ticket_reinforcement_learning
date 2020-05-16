@@ -8,7 +8,6 @@ from classes.multi_ticket_env import MultiTicketEnv
 from sklearn.preprocessing import StandardScaler
 from plotly.subplots import make_subplots
 import plotly.graph_objs as go
-import plotly.offline as pyo
 import matplotlib.pyplot as plt
 
 def test_plots(data,offers,data_dict,name):
@@ -199,11 +198,13 @@ if __name__ == '__main__':
                      ['No offer']+[f'Data ticket {i+1}' for i in range(3)]))
 
         fig = test_plots(data_usage,train_offers,data_dict,'train')
-        pyo.plot(fig,filename='./images/train_offers.html',auto_open=False)
+        fig.write_image("./images/train_offers.png")
+        #pyo.plot(fig,filename='./images/train_offers.png',auto_open=False)
         print("Train offer plot is saved under './images/train_offers.html'")
 
         fig = test_plots(test_data_usage,test_offers,data_dict,'test')
-        pyo.plot(fig,filename='./images/test_offers.html',auto_open=False)
+        fig.write_image("./images/test_offers.png")
+        #pyo.plot(fig,filename='./images/test_offers.png',auto_open=False)
         print("Test offer plot is saved under './images/test_offers.html'")
 
     else:
